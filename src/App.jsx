@@ -1,4 +1,4 @@
-
+const API_URL = import.meta.env.VITE_API_URL;
 import { useState, useEffect } from 'react'
 import './App.css'
 
@@ -11,7 +11,7 @@ const App = () => {
 
 
   useEffect(() => {
-    fetch('http://localhost:3333/api/tasks')
+    fetch(`${API_URL}/api/tasks`)
       .then(res => {
         if (!res.ok) {
           throw new Error('فشل جلب المهام')
@@ -45,7 +45,7 @@ const App = () => {
     setIsSaving(true)
 
     try {
-      const response = await fetch('http://localhost:3333/api/tasks', {
+      const response = await fetch(`${API_URL}/api/tasks`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const handleToggleTask = async (id) => {
 
   try {
     const response = await fetch(
-      `http://localhost:3333/api/tasks/${id}`,
+      `${API_URL}/api/tasks/${id}`,
       {
         method: 'PATCH',
         headers: {
@@ -114,7 +114,7 @@ const handleToggleTask = async (id) => {
 const handleDeleteTask = async (id) => {
   try {
     const response = await fetch(
-      `http://localhost:3333/api/tasks/${id}`,
+      `${API_URL}/api/tasks/${id}`,
       {
         method: 'DELETE',
       }
